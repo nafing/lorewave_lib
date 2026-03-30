@@ -1,0 +1,56 @@
+import type { CSSProperties, InputHTMLAttributes, ReactNode } from 'react'
+import styles from './index.module.css'
+import sharedStyles from '../_shared/field.module.css'
+import { className } from '../../utils'
+import type { StyleProps } from '../../utils'
+import { FieldRoot, fieldSizeClassNames, fieldVariantClassNames, getFieldLayout, type FieldSize, type FieldVariant, type FieldWrapperProps } from '../_shared/field'
+
+export type CheckboxProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'children' | 'type' | 'size'> &
+  StyleProps &
+  FieldWrapperProps & {
+    label?: ReactNode
+    size?: FieldSize
+    style?: CSSProperties
+    variant?: FieldVariant
+  }
+
+export const Checkbox = ({
+  className: customClassName,
+  description,
+  disabled,
+  error,
+  hint,
+  label,
+  required,
+  size = 'md',
+  style,
+  variant = 'default',
+  withAsterisk,
+  ...props
+}: CheckboxProps) => {
+  const { wrapperProps, wrapperStyles } = getFieldLayout({ ...props, description, error, hint, required, size, style, variant, withAsterisk })
+
+  return (
+    <FieldRoot description={description} error={error} hint={hint} label={undefined} required={required} style={{ ...wrapperStyles, ...style }} withAsterisk={withAsterisk}>
+      <label
+        className={className(
+          sharedStyles.choiceRoot,
+          sharedStyles[fieldSizeClassNames[size]],
+          sharedStyles[fieldVariantClassNames[variant]],
+          disabled && sharedStyles.choiceDisabled,
+          styles.root,
+          customClassName,
+        )}
+      >
+        <input {...wrapperProps} className={sharedStyles.choiceInput} disabled={disabled} type="checkbox" />
+        <span className={sharedStyles.checkboxIndicator} />
+        {label && (
+          <span className={sharedStyles.choiceLabel}>
+            {label}
+            {(required || withAsterisk) && <span className={sharedStyles.fieldAsterisk}>*</span>}
+          </span>
+        )}
+      </label>
+    </FieldRoot>
+  )
+}

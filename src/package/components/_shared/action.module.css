@@ -1,0 +1,167 @@
+.base {
+  --lw-action-height: 2.5rem;
+  --lw-action-padding-x: 1rem;
+  --lw-action-gap: var(--lw-space-sm);
+  --lw-action-radius: var(--lw-radius-md);
+  --lw-action-icon-size: 1.125rem;
+  --lw-action-loader-size: 0.875rem;
+  --lw-action-bg: var(--lw-color-surface-alt);
+  --lw-action-bg-hover: rgba(15, 23, 42, 0.82);
+  --lw-action-border: var(--lw-color-border);
+  --lw-action-border-hover: var(--lw-color-border-strong);
+  --lw-action-color: var(--lw-color-text);
+  position: relative;
+  border: 1px solid var(--lw-action-border);
+  border-radius: var(--lw-action-radius);
+  color: var(--lw-action-color);
+  background: var(--lw-action-bg);
+  font: inherit;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease, opacity 140ms ease;
+  appearance: none;
+  box-sizing: border-box;
+}
+
+.base:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.base:not(:disabled):hover {
+  background: var(--lw-action-bg-hover);
+  border-color: var(--lw-action-border-hover);
+}
+
+.variantDefault {
+  --lw-action-bg: var(--lw-color-surface-alt);
+  --lw-action-bg-hover: rgba(15, 23, 42, 0.82);
+  --lw-action-border: var(--lw-color-border);
+  --lw-action-color: var(--lw-color-text);
+}
+
+.variantFilled {
+  --lw-action-bg: var(--lw-color-primary-strong);
+  --lw-action-bg-hover: #2563eb;
+  --lw-action-border: var(--lw-color-border-strong);
+  --lw-action-color: var(--lw-color-primary-text);
+}
+
+.variantLight {
+  --lw-action-bg: var(--lw-color-primary-soft);
+  --lw-action-bg-hover: rgba(59, 130, 246, 0.24);
+  --lw-action-border: rgba(59, 130, 246, 0.28);
+  --lw-action-color: #dbeafe;
+}
+
+.variantOutline {
+  --lw-action-bg: transparent;
+  --lw-action-bg-hover: rgba(15, 23, 42, 0.82);
+  --lw-action-border: var(--lw-color-border);
+  --lw-action-color: var(--lw-color-text);
+}
+
+.variantSubtle {
+  --lw-action-bg: transparent;
+  --lw-action-bg-hover: transparent;
+  --lw-action-border: transparent;
+  --lw-action-color: var(--lw-color-text-muted);
+}
+
+.variantSubtle:not(:disabled):hover,
+.variantTransparent:not(:disabled):hover {
+  color: var(--lw-color-text);
+  border-color: transparent;
+}
+
+.variantTransparent {
+  --lw-action-bg: transparent;
+  --lw-action-bg-hover: transparent;
+  --lw-action-border: transparent;
+  --lw-action-color: var(--lw-color-text);
+}
+
+.sizeXs {
+  --lw-action-height: 1.75rem;
+  --lw-action-padding-x: 0.625rem;
+  --lw-action-gap: var(--lw-space-xs);
+  --lw-action-radius: var(--lw-radius-sm);
+  --lw-action-icon-size: 0.875rem;
+  --lw-action-loader-size: 0.75rem;
+}
+
+.sizeSm {
+  --lw-action-height: 2rem;
+  --lw-action-padding-x: 0.75rem;
+  --lw-action-gap: var(--lw-space-xs);
+  --lw-action-radius: var(--lw-radius-sm);
+  --lw-action-icon-size: 1rem;
+  --lw-action-loader-size: 0.75rem;
+}
+
+.sizeMd {
+  --lw-action-height: 2.5rem;
+  --lw-action-padding-x: 1rem;
+  --lw-action-gap: var(--lw-space-sm);
+  --lw-action-radius: var(--lw-radius-md);
+  --lw-action-icon-size: 1.125rem;
+  --lw-action-loader-size: 0.875rem;
+}
+
+.sizeLg {
+  --lw-action-height: 3rem;
+  --lw-action-padding-x: 1.25rem;
+  --lw-action-gap: var(--lw-space-sm);
+  --lw-action-radius: var(--lw-radius-lg);
+  --lw-action-icon-size: 1.25rem;
+  --lw-action-loader-size: 1rem;
+}
+
+.sizeXl {
+  --lw-action-height: 3.5rem;
+  --lw-action-padding-x: 1.5rem;
+  --lw-action-gap: var(--lw-space-md);
+  --lw-action-radius: var(--lw-radius-lg);
+  --lw-action-icon-size: 1.375rem;
+  --lw-action-loader-size: 1.125rem;
+}
+
+.section {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.loading {
+  cursor: progress;
+}
+
+.loader {
+  width: var(--lw-action-loader-size);
+  height: var(--lw-action-loader-size);
+  border: 0.125rem solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+.icon :global(svg),
+.section :global(svg),
+.label :global(svg) {
+  width: var(--lw-action-icon-size);
+  height: var(--lw-action-icon-size);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

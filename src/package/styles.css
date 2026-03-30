@@ -1,0 +1,63 @@
+:root {
+	--lw-space-xs: 0.25rem;
+	--lw-space-sm: 0.5rem;
+	--lw-space-md: 1rem;
+	--lw-space-lg: 1.5rem;
+	--lw-space-xl: 2rem;
+	--lw-radius-xs: 0.25rem;
+	--lw-radius-sm: 0.5rem;
+	--lw-radius-md: 0.75rem;
+	--lw-radius-lg: 1rem;
+	--lw-radius-xl: 1.5rem;
+	--lw-color-white: #ffffff;
+	--lw-color-black: #020617;
+	--lw-color-text: #f8fafc;
+	--lw-color-text-muted: #b8c5d6;
+	--lw-color-text-dimmed: #8da2bb;
+	--lw-color-surface: rgba(9, 17, 30, 0.82);
+	--lw-color-surface-alt: rgba(12, 22, 35, 0.86);
+	--lw-color-surface-soft: rgba(15, 23, 42, 0.72);
+	--lw-color-border: rgba(148, 163, 184, 0.18);
+	--lw-color-border-strong: rgba(125, 211, 252, 0.4);
+	--lw-color-primary: #3b82f6;
+	--lw-color-primary-soft: rgba(59, 130, 246, 0.18);
+	--lw-color-primary-strong: rgba(59, 130, 246, 0.92);
+	--lw-color-primary-text: #eff6ff;
+	--lw-color-divider: rgba(148, 163, 184, 0.18);
+	--lw-shadow-xs: 0 0.375rem 1rem rgba(2, 6, 23, 0.12);
+	--lw-shadow-sm: 0 0.75rem 1.5rem rgba(2, 6, 23, 0.16);
+	--lw-shadow-md: 0 1rem 2.25rem rgba(2, 6, 23, 0.2);
+	--lw-shadow-lg: 0 1.5rem 3rem rgba(2, 6, 23, 0.24);
+	--lw-font-size-xs: 0.75rem;
+	--lw-font-size-sm: 0.875rem;
+	--lw-font-size-md: 1rem;
+	--lw-font-size-lg: 1.125rem;
+	--lw-font-size-xl: 1.25rem;
+	--lw-title-size-1: 2.5rem;
+	--lw-title-size-2: 2rem;
+	--lw-title-size-3: 1.5rem;
+	--lw-title-size-4: 1.25rem;
+	--lw-title-size-5: 1.125rem;
+	--lw-title-size-6: 1rem;
+	--lw-font-sans: 'Segoe UI', 'Tahoma', sans-serif;
+	--lw-text-color: #f5f7fa;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 16px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	font-family: var(--lw-font-sans);
+	color: var(--lw-text-color);
+}

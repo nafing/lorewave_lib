@@ -1,0 +1,21 @@
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(83, 195, 240, 0.18), transparent 32%),
+    linear-gradient(180deg, #0b1830 0%, #050b14 100%);
+}
+
+#root {
+  isolation: isolate;
+}

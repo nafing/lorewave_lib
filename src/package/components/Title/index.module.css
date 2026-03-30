@@ -1,0 +1,33 @@
+.root {
+  margin: 0;
+  min-width: 0;
+  color: inherit;
+  font-family: inherit;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.order1 {
+  font-size: var(--lw-title-size-1);
+}
+
+.order2 {
+  font-size: var(--lw-title-size-2);
+}
+
+.order3 {
+  font-size: var(--lw-title-size-3);
+}
+
+.order4 {
+  font-size: var(--lw-title-size-4);
+}
+
+.order5 {
+  font-size: var(--lw-title-size-5);
+}
+
+.order6 {
+  font-size: var(--lw-title-size-6);
+}

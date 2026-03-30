@@ -1,0 +1,47 @@
+.root {
+  --lw-divider-size: 1px;
+  --lw-divider-color: var(--lw-color-divider);
+  display: flex;
+  align-items: center;
+  color: var(--lw-color-text-dimmed);
+  min-width: 0;
+}
+
+.horizontal {
+  width: 100%;
+  flex-direction: row;
+}
+
+.vertical {
+  height: 100%;
+  min-height: 1.5rem;
+  flex-direction: column;
+}
+
+.line {
+  background: var(--lw-divider-color);
+  flex: 1 1 auto;
+}
+
+.horizontal .line {
+  height: var(--lw-divider-size);
+}
+
+.vertical .line {
+  width: var(--lw-divider-size);
+  min-height: 100%;
+}
+
+.label {
+  flex: 0 0 auto;
+  padding: 0 var(--lw-space-sm);
+  font-size: var(--lw-font-size-sm);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.vertical .label {
+  padding: var(--lw-space-sm) 0;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}

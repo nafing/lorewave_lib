@@ -1,0 +1,26 @@
+.root {
+  box-sizing: border-box;
+  min-width: 0;
+  background: var(--lw-color-surface);
+  border-radius: var(--lw-radius-lg);
+}
+
+.withBorder {
+  border: 1px solid var(--lw-color-border);
+}
+
+.shadowXs {
+  box-shadow: var(--lw-shadow-xs);
+}
+
+.shadowSm {
+  box-shadow: var(--lw-shadow-sm);
+}
+
+.shadowMd {
+  box-shadow: var(--lw-shadow-md);
+}
+
+.shadowLg {
+  box-shadow: var(--lw-shadow-lg);
+}

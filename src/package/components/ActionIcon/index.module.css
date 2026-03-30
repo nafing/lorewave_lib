@@ -1,0 +1,9 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--lw-action-height);
+  height: var(--lw-action-height);
+  padding: 0;
+  flex: 0 0 auto;
+}

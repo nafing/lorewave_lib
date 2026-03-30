@@ -1,0 +1,11 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--lw-action-gap);
+  min-height: var(--lw-action-height);
+  padding: 0 var(--lw-action-padding-x);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
