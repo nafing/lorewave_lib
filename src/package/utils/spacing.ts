@@ -16,10 +16,29 @@ export const radiusTokens = {
   xl: 1.5,
 } as const
 
+export const globalColorTokens = {
+  white: 'var(--lw-color-white)',
+  black: 'var(--lw-color-black)',
+  text: 'var(--lw-color-text)',
+  muted: 'var(--lw-color-text-muted)',
+  dimmed: 'var(--lw-color-text-dimmed)',
+  surface: 'var(--lw-color-surface)',
+  'surface-alt': 'var(--lw-color-surface-alt)',
+  'surface-soft': 'var(--lw-color-surface-soft)',
+  border: 'var(--lw-color-border)',
+  'border-strong': 'var(--lw-color-border-strong)',
+  primary: 'var(--lw-color-primary)',
+  'primary-soft': 'var(--lw-color-primary-soft)',
+  'primary-strong': 'var(--lw-color-primary-strong)',
+  'primary-text': 'var(--lw-color-primary-text)',
+  divider: 'var(--lw-color-divider)',
+} as const
+
 export type SpacingToken = keyof typeof spacingTokens
 export type SpacingValue = SpacingToken | number | string | undefined
 export type RadiusToken = keyof typeof radiusTokens
 export type RadiusValue = RadiusToken | number | string | undefined
+export type GlobalColorToken = keyof typeof globalColorTokens
 
 export type SpacingProps = {
   m?: SpacingValue
@@ -43,8 +62,8 @@ export type RadiusProps = {
   radius?: RadiusValue
 }
 
-export type ColorValue = CSSProperties['background']
-export type TextColorValue = CSSProperties['color']
+export type ColorValue = CSSProperties['background'] | GlobalColorToken
+export type TextColorValue = CSSProperties['color'] | GlobalColorToken
 
 export type ColorProps = {
   bg?: ColorValue
@@ -123,6 +142,24 @@ export const resolveRadiusValue = (value: RadiusValue): string | undefined => {
   return resolveTokenValue(value, radiusTokens)
 }
 
+export const resolveColorValue = (
+  value: ColorValue | TextColorValue,
+): string | undefined => {
+  if (!value) {
+    return undefined
+  }
+
+  if (typeof value !== 'string') {
+    return undefined
+  }
+
+  if (value in globalColorTokens) {
+    return globalColorTokens[value as GlobalColorToken]
+  }
+
+  return value
+}
+
 export const extractSpacingStyles = (props: SpacingProps): SpacingStyleMap => {
   const styles: SpacingStyleMap = {}
 
@@ -159,8 +196,8 @@ export const extractRadiusStyles = (props: RadiusProps): RadiusStyleMap => {
 
 export const extractColorStyles = (props: ColorProps): ColorStyleMap => {
   return {
-    background: props.bg,
-    color: props.color,
+    background: resolveColorValue(props.bg),
+    color: resolveColorValue(props.color),
   }
 }
 

@@ -116,13 +116,13 @@ const ShowcaseSection = ({ children, description, title }: SectionProps) => {
     <Paper p="lg" radius="xl" shadow="md" withBorder>
       <Stack gap="md">
         <Stack gap="xs">
-          <Text color="#8da2bb" size="sm">
+          <Text color="dimmed" size="sm">
             Component showcase
           </Text>
-          <Title color="#ffffff" order={3}>
+          <Title color="white" order={3}>
             {title}
           </Title>
-          <Text color="#b8c5d6" size="sm">
+          <Text color="muted" size="sm">
             {description}
           </Text>
         </Stack>
@@ -153,7 +153,7 @@ const App = () => {
 
   return (
     <>
-      <Box color="#f8fafc" p="xl">
+      <Box color="text" p="xl">
         <Stack gap="xl">
           <Paper p="xl" radius="xl" shadow="lg" withBorder>
             <Stack gap="lg">
@@ -180,12 +180,12 @@ const App = () => {
               </Flex>
 
               <Stack gap="sm">
-                <Title color="#ffffff" order={2}>
+                <Title color="white" order={2}>
                   React component library for FiveM, supporting both TypeScript
                   and JavaScript with a focus on performance, accessibility, and
                   ease of use.
                 </Title>
-                <Text color="#b8c5d6" fw={500} size="sm">
+                <Text color="muted" fw={500} size="sm">
                   Explore all components, variants, and sizes in one place,
                   with examples and descriptions. This demo showcase is the
                   ideal place to get familiar with the library and see how each
@@ -197,30 +197,30 @@ const App = () => {
               <Grid gap="md" cols={3}>
                 <Paper p="md" radius="lg" shadow="xs">
                   <Stack gap="xs">
-                    <Text color="#8da2bb" size="sm">
+                    <Text color="dimmed" size="sm">
                       Components
                     </Text>
-                    <Title color="#ffffff" order={4}>
+                    <Title color="white" order={4}>
                       25+ demo blocks
                     </Title>
                   </Stack>
                 </Paper>
                 <Paper p="md" radius="lg" shadow="xs">
                   <Stack gap="xs">
-                    <Text color="#8da2bb" size="sm">
+                    <Text color="dimmed" size="sm">
                       Coverage
                     </Text>
-                    <Title color="#ffffff" order={4}>
+                    <Title color="white" order={4}>
                       Variants + sizes + radius
                     </Title>
                   </Stack>
                 </Paper>
                 <Paper p="md" radius="lg" shadow="xs">
                   <Stack gap="xs">
-                    <Text color="#8da2bb" size="sm">
+                    <Text color="dimmed" size="sm">
                       Overlays
                     </Text>
-                    <Title color="#ffffff" order={4}>
+                    <Title color="white" order={4}>
                       Tooltip / Popover / Menu / Modal
                     </Title>
                   </Stack>
@@ -246,7 +246,7 @@ const App = () => {
                     <Stack gap="xs">
                       <VariantBadge>radius={String(radius)}</VariantBadge>
                       <Text fw={600}>Box surface</Text>
-                      <Text color="#8da2bb" size="sm">
+                      <Text color="dimmed" size="sm">
                         p=&quot;md&quot; + bg + radius
                       </Text>
                     </Stack>
@@ -383,7 +383,7 @@ const App = () => {
                     <Stack gap="xs">
                       <VariantBadge>shadow={shadow}</VariantBadge>
                       <Text fw={600}>Panel surface</Text>
-                      <Text color="#8da2bb" size="sm">
+                      <Text color="dimmed" size="sm">
                         withBorder + radius
                       </Text>
                     </Stack>
@@ -393,17 +393,20 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="Text includes sizes from xs to xl, alignment, truncation, and line clamp."
+              description="Text includes sizes from xs to xl, semantic colors like muted and dimmed, alignment, truncation, and line clamp."
               title="Text"
             >
               <Stack gap="sm">
                 {(["xs", "sm", "md", "lg", "xl"] as const).map((size) => (
-                  <Text color="#dbeafe" key={size} size={size}>
+                  <Text color="text" key={size} size={size}>
                     Text size {size}: quick response overlay content
                   </Text>
                 ))}
+                <Text color="muted">
+                  Muted text uses the global semantic palette for secondary copy.
+                </Text>
                 <Text
-                  color="#8da2bb"
+                  color="dimmed"
                   lineClamp={2}
                   style={{ maxWidth: "20rem" }}
                 >
@@ -411,7 +414,7 @@ const App = () => {
                   then cut after the second line to show the multiline
                   truncation behavior.
                 </Text>
-                <Text color="#7dd3fc" style={{ maxWidth: "12rem" }} truncate>
+                <Text color="primary-text" style={{ maxWidth: "12rem" }} truncate>
                   Truncate sample with a very long dispatch event name that
                   should cut.
                 </Text>
@@ -660,7 +663,7 @@ const App = () => {
                       target=&quot;#modal-target&quot;
                     </VariantBadge>
                     <Text fw={600}>Embedded modal host</Text>
-                    <Text color="#8da2bb" size="sm">
+                    <Text color="muted" size="sm">
                       This container has `position: relative`, so the modal can
                       be mounted locally instead of attaching to
                       `document.body`.
@@ -738,7 +741,7 @@ const App = () => {
                   <Paper p="lg" radius="lg" shadow="xs" withBorder>
                     <Stack gap="xs">
                       <Text fw={600}>Right click area</Text>
-                      <Text color="#8da2bb" size="sm">
+                      <Text color="muted" size="sm">
                         Right click to open the context menu.
                       </Text>
                     </Stack>
@@ -789,7 +792,7 @@ const App = () => {
               title="Portal"
             >
               <Stack gap="sm">
-                <Text color="#8da2bb" size="sm">
+                <Text color="muted" size="sm">
                   Use the button in the hero section or below to mount the
                   portaled badge in the corner of the screen.
                 </Text>
@@ -816,7 +819,7 @@ const App = () => {
             >
               <Grid gap="md" minChildWidth={220}>
                 <Box>
-                  <Text color="#8da2bb" size="sm">
+                  <Text color="muted" size="sm">
                     scrollOffset=false
                   </Text>
                   <ScrollArea height={220} mt="sm">
@@ -835,7 +838,7 @@ const App = () => {
                   </ScrollArea>
                 </Box>
                 <Box>
-                  <Text color="#8da2bb" size="sm">
+                  <Text color="muted" size="sm">
                     scrollOffset=true
                   </Text>
                   <ScrollArea
@@ -1155,7 +1158,7 @@ const App = () => {
         <Portal>
           <Box
             bg="rgba(59, 130, 246, 0.88)"
-            color="#eff6ff"
+            color="white"
             p="sm"
             radius="xl"
             style={{
@@ -1193,7 +1196,7 @@ const App = () => {
             <Badge variant="dot">scroll lock</Badge>
           </Flex>
 
-          <Text color="#b8c5d6">
+          <Text color="muted" size="sm">
             A ScrollArea is included inside so you can immediately see how the
             components behave when nested inside an overlay.
           </Text>
@@ -1227,7 +1230,7 @@ const App = () => {
         title="Target modal"
       >
         <Stack gap="md">
-          <Text color="#b8c5d6" size="sm">
+          <Text color="muted" size="sm">
             This is an example of rendering a modal inside a specific
             container.
           </Text>
