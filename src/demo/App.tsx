@@ -49,15 +49,34 @@ const actionVariants = [
 ] as const;
 
 const actionSizes = ["xs", "sm", "md", "lg", "xl"] as const;
-const badgeVariants = ["default", "filled", "light", "outline", "dot", "transparent"] as const;
+const badgeVariants = [
+  "default",
+  "filled",
+  "light",
+  "outline",
+  "dot",
+  "transparent",
+] as const;
 const badgeSizes = ["xs", "sm", "md", "lg", "xl"] as const;
-const fieldVariants = ["default", "filled", "light", "outline", "subtle", "transparent"] as const;
+const fieldVariants = [
+  "default",
+  "filled",
+  "light",
+  "outline",
+  "subtle",
+  "transparent",
+] as const;
 const fieldSizes = ["xs", "sm", "md", "lg", "xl"] as const;
 const paperShadows = ["xs", "sm", "md", "lg"] as const;
 const titleOrders = [1, 2, 3, 4, 5, 6] as const;
 const radiusValues = ["xs", "sm", "md", "lg", "xl", 16] as const;
 const tooltipPositions = ["top", "right", "bottom", "left"] as const;
-const popoverPositions = ["top", "bottom-start", "bottom-end", "right"] as const;
+const popoverPositions = [
+  "top",
+  "bottom-start",
+  "bottom-end",
+  "right",
+] as const;
 const menuPositions = ["bottom-start", "bottom-end", "top-end"] as const;
 
 const selectData = [
@@ -144,33 +163,45 @@ const App = () => {
                   <Badge variant="dot">Full component showcase</Badge>
                 </Group>
                 <Flex gap="sm" wrap="wrap">
-                  <Button leftSection={<IconSparkles size={16} stroke={1.8} />} onClick={() => setModalSize("26rem")} variant="filled">
+                  <Button
+                    leftSection={<IconSparkles size={16} stroke={1.8} />}
+                    onClick={() => setModalSize("26rem")}
+                    variant="filled"
+                  >
                     Open modal
                   </Button>
-                  <Button onClick={() => setPortalVisible((current) => !current)} variant="outline">
+                  <Button
+                    onClick={() => setPortalVisible((current) => !current)}
+                    variant="outline"
+                  >
                     Toggle portal
                   </Button>
                 </Flex>
               </Flex>
 
               <Stack gap="sm">
-                <Title color="#ffffff" order={1}>
-                  Demo przebudowane pod sekcje per komponent
+                <Title color="#ffffff" order={2}>
+                  React component library for FiveM, supporting both TypeScript
+                  and JavaScript with a focus on performance, accessibility, and
+                  ease of use.
                 </Title>
-                <Text color="#b8c5d6" fw={500} size="lg">
-                  Kazdy komponent ma osobny blok. Tam gdzie API to wspiera,
-                  pokazane sa warianty, rozmiary, radiusy i glowne tryby uzycia.
+                <Text color="#b8c5d6" fw={500} size="sm">
+                  Explore all components, variants, and sizes in one place,
+                  with examples and descriptions. This demo showcase is the
+                  ideal place to get familiar with the library and see how each
+                  component can be used to build advanced user interfaces in
+                  FiveM.
                 </Text>
               </Stack>
 
-              <Grid gap="md" minChildWidth={220}>
+              <Grid gap="md" cols={3}>
                 <Paper p="md" radius="lg" shadow="xs">
                   <Stack gap="xs">
                     <Text color="#8da2bb" size="sm">
                       Components
                     </Text>
                     <Title color="#ffffff" order={4}>
-                      25+ blokow demo
+                      25+ demo blocks
                     </Title>
                   </Stack>
                 </Paper>
@@ -200,7 +231,7 @@ const App = () => {
 
           <Grid gap="lg" minChildWidth={340}>
             <ShowcaseSection
-              description="Box jest najnizszym wrapperem dla spacing props, kolorow tla i radiusa."
+              description="Box is the lowest-level wrapper for spacing props, background colors, and radius."
               title="Box"
             >
               <Grid gap="sm" minChildWidth={150}>
@@ -225,18 +256,36 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="Flex pokazuje osie, justowanie i zawijanie elementow."
+              description="Flex demonstrates alignment, justification, and wrapping behavior."
               title="Flex"
             >
               <Stack gap="sm">
-                <Flex align="center" gap="sm" justify="space-between" p="sm" style={{ border: "1px solid rgba(148, 163, 184, 0.18)", borderRadius: "0.75rem" }}>
+                <Flex
+                  align="center"
+                  gap="sm"
+                  justify="space-between"
+                  p="sm"
+                  style={{
+                    border: "1px solid rgba(148, 163, 184, 0.18)",
+                    borderRadius: "0.75rem",
+                  }}
+                >
                   <VariantBadge>space-between</VariantBadge>
                   <Badge variant="filled">Center</Badge>
                   <Badge variant="light">Aligned</Badge>
                 </Flex>
                 <Flex gap="sm" justify="flex-start" wrap="wrap">
                   {actionVariants.map((variant) => (
-                    <Badge key={variant} variant={variant === "subtle" ? "default" : variant === "transparent" ? "transparent" : "light"}>
+                    <Badge
+                      key={variant}
+                      variant={
+                        variant === "subtle"
+                          ? "default"
+                          : variant === "transparent"
+                            ? "transparent"
+                            : "light"
+                      }
+                    >
                       {variant}
                     </Badge>
                   ))}
@@ -245,20 +294,30 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="Grid obsluguje stale kolumny i auto-fit przez minChildWidth."
+              description="Grid supports fixed columns and auto-fit layouts through minChildWidth."
               title="Grid"
             >
               <Stack gap="md">
                 <Grid cols={3} gap="sm">
                   {[1, 2, 3].map((item) => (
-                    <Paper key={`grid-fixed-${item}`} p="sm" radius="md" shadow="xs">
+                    <Paper
+                      key={`grid-fixed-${item}`}
+                      p="sm"
+                      radius="md"
+                      shadow="xs"
+                    >
                       Fixed {item}
                     </Paper>
                   ))}
                 </Grid>
                 <Grid gap="sm" minChildWidth={120}>
                   {[1, 2, 3, 4].map((item) => (
-                    <Paper key={`grid-auto-${item}`} p="sm" radius="md" shadow="xs">
+                    <Paper
+                      key={`grid-auto-${item}`}
+                      p="sm"
+                      radius="md"
+                      shadow="xs"
+                    >
                       Auto {item}
                     </Paper>
                   ))}
@@ -267,7 +326,7 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="Group to poziomy helper oparty o Flex z domyslnym align=center."
+              description="Group is a horizontal helper built on Flex with align=center by default."
               title="Group"
             >
               <Stack gap="sm">
@@ -291,7 +350,7 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="Stack ustawia elementy pionowo i pokazuje roznice w gap."
+              description="Stack arranges elements vertically and shows the difference between gap values."
               title="Stack"
             >
               <Grid gap="sm" minChildWidth={140}>
@@ -309,12 +368,18 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="Paper pokazuje wszystkie cienie, border i roznice promieni."
+              description="Paper showcases all shadow levels, borders, and radius differences."
               title="Paper"
             >
               <Grid gap="sm" minChildWidth={160}>
                 {paperShadows.map((shadow) => (
-                  <Paper key={shadow} p="md" radius="lg" shadow={shadow} withBorder>
+                  <Paper
+                    key={shadow}
+                    p="md"
+                    radius="lg"
+                    shadow={shadow}
+                    withBorder
+                  >
                     <Stack gap="xs">
                       <VariantBadge>shadow={shadow}</VariantBadge>
                       <Text fw={600}>Panel surface</Text>
@@ -328,7 +393,7 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="Text ma skale od xs do xl, alignment, truncation i line clamp."
+              description="Text includes sizes from xs to xl, alignment, truncation, and line clamp."
               title="Text"
             >
               <Stack gap="sm">
@@ -337,18 +402,24 @@ const App = () => {
                     Text size {size}: quick response overlay content
                   </Text>
                 ))}
-                <Text color="#8da2bb" lineClamp={2} style={{ maxWidth: "20rem" }}>
-                  Long text sample for lineClamp. This sentence should wrap and then cut
-                  after the second line to show the multiline truncation behavior.
+                <Text
+                  color="#8da2bb"
+                  lineClamp={2}
+                  style={{ maxWidth: "20rem" }}
+                >
+                  Long text sample for lineClamp. This sentence should wrap and
+                  then cut after the second line to show the multiline
+                  truncation behavior.
                 </Text>
                 <Text color="#7dd3fc" style={{ maxWidth: "12rem" }} truncate>
-                  Truncate sample with a very long dispatch event name that should cut.
+                  Truncate sample with a very long dispatch event name that
+                  should cut.
                 </Text>
               </Stack>
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="Title eksponuje wszystkie poziomy naglowkow od order 1 do 6."
+              description="Title exposes every heading level from order 1 to 6."
               title="Title"
             >
               <Stack gap="sm">
@@ -361,7 +432,7 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="Divider wspiera poziomy i pionowy wariant oraz etykiety."
+              description="Divider supports horizontal and vertical variants as well as labels."
               title="Divider"
             >
               <Stack gap="md">
@@ -376,7 +447,7 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="Badge pokazuje wszystkie warianty, skale i rozne radiusy."
+              description="Badge shows all variants, scales, and different radius values."
               title="Badge"
             >
               <Stack gap="md">
@@ -396,7 +467,11 @@ const App = () => {
                 </Flex>
                 <Flex gap="sm" wrap="wrap">
                   {radiusValues.map((radius) => (
-                    <Badge key={String(radius)} radius={radius} variant="outline">
+                    <Badge
+                      key={String(radius)}
+                      radius={radius}
+                      variant="outline"
+                    >
                       radius {String(radius)}
                     </Badge>
                   ))}
@@ -405,7 +480,7 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="Button pokazuje komplet wariantow, wszystkie size i radius."
+              description="Button presents the full set of variants, every size, and radius options."
               title="Button"
             >
               <Stack gap="md">
@@ -425,16 +500,26 @@ const App = () => {
                 </Flex>
                 <Flex align="center" gap="sm" wrap="wrap">
                   {radiusValues.map((radius) => (
-                    <Button key={String(radius)} radius={radius} variant="outline">
+                    <Button
+                      key={String(radius)}
+                      radius={radius}
+                      variant="outline"
+                    >
                       radius {String(radius)}
                     </Button>
                   ))}
                 </Flex>
                 <Flex gap="sm" wrap="wrap">
-                  <Button leftSection={<IconPlayerPlay size={16} stroke={1.8} />} variant="light">
+                  <Button
+                    leftSection={<IconPlayerPlay size={16} stroke={1.8} />}
+                    variant="light"
+                  >
                     Left section
                   </Button>
-                  <Button rightSection={<IconMenu2 size={16} stroke={1.8} />} variant="outline">
+                  <Button
+                    rightSection={<IconMenu2 size={16} stroke={1.8} />}
+                    variant="outline"
+                  >
                     Right section
                   </Button>
                   <Button loading variant="transparent">
@@ -445,27 +530,41 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="ActionIcon korzysta z tego samego zestawu size, variant i radius co Button."
+              description="ActionIcon uses the same size, variant, and radius set as Button."
               title="ActionIcon"
             >
               <Stack gap="md">
                 <Flex align="center" gap="sm" wrap="wrap">
                   {actionVariants.map((variant) => (
-                    <ActionIcon aria-label={variant} key={variant} variant={variant}>
+                    <ActionIcon
+                      aria-label={variant}
+                      key={variant}
+                      variant={variant}
+                    >
                       <IconBell size={18} stroke={1.8} />
                     </ActionIcon>
                   ))}
                 </Flex>
                 <Flex align="center" gap="sm" wrap="wrap">
                   {actionSizes.map((size) => (
-                    <ActionIcon aria-label={size} key={size} size={size} variant="filled">
+                    <ActionIcon
+                      aria-label={size}
+                      key={size}
+                      size={size}
+                      variant="filled"
+                    >
                       <IconSettings size={18} stroke={1.8} />
                     </ActionIcon>
                   ))}
                 </Flex>
                 <Flex align="center" gap="sm" wrap="wrap">
                   {radiusValues.map((radius) => (
-                    <ActionIcon aria-label={String(radius)} key={String(radius)} radius={radius} variant="outline">
+                    <ActionIcon
+                      aria-label={String(radius)}
+                      key={String(radius)}
+                      radius={radius}
+                      variant="outline"
+                    >
                       <IconSparkles size={18} stroke={1.8} />
                     </ActionIcon>
                   ))}
@@ -474,12 +573,16 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="Tooltip prezentuje pozycjonowanie overlaya z roznych stron targetu."
+              description="Tooltip demonstrates overlay positioning from different sides of the target."
               title="Tooltip"
             >
               <Flex gap="sm" wrap="wrap">
                 {tooltipPositions.map((position) => (
-                  <Tooltip key={position} label={`Tooltip ${position}`} position={position}>
+                  <Tooltip
+                    key={position}
+                    label={`Tooltip ${position}`}
+                    position={position}
+                  >
                     <Button size="sm" variant="default">
                       {position}
                     </Button>
@@ -489,7 +592,7 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="Popover pokazuje kompozycje Target + Dropdown i kilka pozycji."
+              description="Popover demonstrates the Target + Dropdown composition and several positions."
               title="Popover"
             >
               <Flex gap="sm" wrap="wrap">
@@ -514,7 +617,7 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="Modal dostaje rozne szerokosci i moze byc renderowany globalnie albo do wskazanego targetu, np. target=#modal-target."
+              description="Modal supports different widths and can be rendered globally or into a specific target, such as target=#modal-target."
               title="Modal"
             >
               <Stack gap="md">
@@ -524,11 +627,18 @@ const App = () => {
                     { label: "size 34rem", value: "34rem" },
                     { label: "size 46rem", value: "46rem" },
                   ].map((preset) => (
-                    <Button key={preset.value} onClick={() => setModalSize(preset.value)} variant="filled">
+                    <Button
+                      key={preset.value}
+                      onClick={() => setModalSize(preset.value)}
+                      variant="filled"
+                    >
                       {preset.label}
                     </Button>
                   ))}
-                  <Button onClick={() => setTargetedModalOpen(true)} variant="outline">
+                  <Button
+                    onClick={() => setTargetedModalOpen(true)}
+                    variant="outline"
+                  >
                     Open target modal
                   </Button>
                 </Flex>
@@ -546,10 +656,14 @@ const App = () => {
                   }}
                 >
                   <Stack gap="xs">
-                    <VariantBadge>target=&quot;#modal-target&quot;</VariantBadge>
+                    <VariantBadge>
+                      target=&quot;#modal-target&quot;
+                    </VariantBadge>
                     <Text fw={600}>Embedded modal host</Text>
                     <Text color="#8da2bb" size="sm">
-                      Ten kontener ma `position: relative`, wiec modal moze zostac zamontowany lokalnie zamiast do `document.body`.
+                      This container has `position: relative`, so the modal can
+                      be mounted locally instead of attaching to
+                      `document.body`.
                     </Text>
                   </Stack>
                 </Box>
@@ -557,7 +671,7 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="Menu pokazuje kompozycje compound components, checkboxy, radio i submenu."
+              description="Menu demonstrates compound components, checkboxes, radio items, and submenus."
               title="Menu"
             >
               <Flex gap="sm" wrap="wrap">
@@ -570,7 +684,9 @@ const App = () => {
                     </Menu.Target>
                     <Menu.Dropdown>
                       <Menu.Label>Dispatch actions</Menu.Label>
-                      <Menu.Item leftSection={<IconPlayerPlay size={16} stroke={1.8} />}>
+                      <Menu.Item
+                        leftSection={<IconPlayerPlay size={16} stroke={1.8} />}
+                      >
                         Open route
                       </Menu.Item>
                       <Menu.Submenu
@@ -578,21 +694,33 @@ const App = () => {
                         label="Settings"
                         leftSection={<IconSettings size={16} stroke={1.8} />}
                       >
-                        <Menu.CheckboxItem checked={menuCompact} onCheckedChange={setMenuCompact}>
+                        <Menu.CheckboxItem
+                          checked={menuCompact}
+                          onCheckedChange={setMenuCompact}
+                        >
                           Compact overlays
                         </Menu.CheckboxItem>
-                        <Menu.CheckboxItem checked={menuTimestamps} onCheckedChange={setMenuTimestamps}>
+                        <Menu.CheckboxItem
+                          checked={menuTimestamps}
+                          onCheckedChange={setMenuTimestamps}
+                        >
                           Show timestamps
                         </Menu.CheckboxItem>
                         <Menu.Divider />
-                        <Menu.RadioGroup onValueChange={setMenuChannel} value={menuChannel}>
+                        <Menu.RadioGroup
+                          onValueChange={setMenuChannel}
+                          value={menuChannel}
+                        >
                           <Menu.Label>Channel</Menu.Label>
                           <Menu.RadioItem value="alpha">Alpha</Menu.RadioItem>
                           <Menu.RadioItem value="beta">Beta</Menu.RadioItem>
                         </Menu.RadioGroup>
                       </Menu.Submenu>
                       <Menu.Divider />
-                      <Menu.Item danger leftSection={<IconTrash size={16} stroke={1.8} />}>
+                      <Menu.Item
+                        danger
+                        leftSection={<IconTrash size={16} stroke={1.8} />}
+                      >
                         Delete preset
                       </Menu.Item>
                     </Menu.Dropdown>
@@ -602,7 +730,7 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="ContextMenu otwiera overlay prawym przyciskiem myszy na osobnym obszarze."
+              description="ContextMenu opens an overlay with right click on a separate surface."
               title="ContextMenu"
             >
               <ContextMenu width={240}>
@@ -611,27 +739,45 @@ const App = () => {
                     <Stack gap="xs">
                       <Text fw={600}>Right click area</Text>
                       <Text color="#8da2bb" size="sm">
-                        Kliknij prawym przyciskiem, aby pokazac menu kontekstowe.
+                        Right click to open the context menu.
                       </Text>
                     </Stack>
                   </Paper>
                 </ContextMenu.Target>
                 <ContextMenu.Dropdown>
-                  <ContextMenu.Item leftSection={<IconCopy size={16} stroke={1.8} />}>
+                  <ContextMenu.Item
+                    leftSection={<IconCopy size={16} stroke={1.8} />}
+                  >
                     Copy overlay id
                   </ContextMenu.Item>
-                  <ContextMenu.Submenu label="Notifications" leftSection={<IconBell size={16} stroke={1.8} />}>
-                    <ContextMenu.CheckboxItem checked={contextPing} onCheckedChange={setContextPing}>
+                  <ContextMenu.Submenu
+                    label="Notifications"
+                    leftSection={<IconBell size={16} stroke={1.8} />}
+                  >
+                    <ContextMenu.CheckboxItem
+                      checked={contextPing}
+                      onCheckedChange={setContextPing}
+                    >
                       Enable ping
                     </ContextMenu.CheckboxItem>
-                    <ContextMenu.RadioGroup onValueChange={setContextMode} value={contextMode}>
+                    <ContextMenu.RadioGroup
+                      onValueChange={setContextMode}
+                      value={contextMode}
+                    >
                       <ContextMenu.Label>Mode</ContextMenu.Label>
-                      <ContextMenu.RadioItem value="all">All</ContextMenu.RadioItem>
-                      <ContextMenu.RadioItem value="priority">Priority only</ContextMenu.RadioItem>
+                      <ContextMenu.RadioItem value="all">
+                        All
+                      </ContextMenu.RadioItem>
+                      <ContextMenu.RadioItem value="priority">
+                        Priority only
+                      </ContextMenu.RadioItem>
                     </ContextMenu.RadioGroup>
                   </ContextMenu.Submenu>
                   <ContextMenu.Divider label="Danger zone" />
-                  <ContextMenu.Item danger leftSection={<IconTrash size={16} stroke={1.8} />}>
+                  <ContextMenu.Item
+                    danger
+                    leftSection={<IconTrash size={16} stroke={1.8} />}
+                  >
                     Clear HUD state
                   </ContextMenu.Item>
                 </ContextMenu.Dropdown>
@@ -639,18 +785,25 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="Portal pozwala wyrenderowac element poza glowna struktura demo."
+              description="Portal lets you render an element outside the main demo structure."
               title="Portal"
             >
               <Stack gap="sm">
                 <Text color="#8da2bb" size="sm">
-                  Uzyj przycisku w hero albo ponizej, aby zamontowac portaled badge w rogu ekranu.
+                  Use the button in the hero section or below to mount the
+                  portaled badge in the corner of the screen.
                 </Text>
                 <Flex gap="sm" wrap="wrap">
-                  <Button onClick={() => setPortalVisible(true)} variant="filled">
+                  <Button
+                    onClick={() => setPortalVisible(true)}
+                    variant="filled"
+                  >
                     Show portal
                   </Button>
-                  <Button onClick={() => setPortalVisible(false)} variant="outline">
+                  <Button
+                    onClick={() => setPortalVisible(false)}
+                    variant="outline"
+                  >
                     Hide portal
                   </Button>
                 </Flex>
@@ -658,7 +811,7 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="ScrollArea ma wlasny viewport, custom thumb i offset pod scrollbar."
+              description="ScrollArea has its own viewport, custom thumb, and optional scrollbar offset."
               title="ScrollArea"
             >
               <Grid gap="md" minChildWidth={220}>
@@ -669,7 +822,12 @@ const App = () => {
                   <ScrollArea height={220} mt="sm">
                     <Stack gap="sm">
                       {activityFeed.map((entry) => (
-                        <Paper key={`feed-plain-${entry}`} p="sm" radius="md" shadow="xs">
+                        <Paper
+                          key={`feed-plain-${entry}`}
+                          p="sm"
+                          radius="md"
+                          shadow="xs"
+                        >
                           <Text size="sm">{entry}</Text>
                         </Paper>
                       ))}
@@ -680,10 +838,20 @@ const App = () => {
                   <Text color="#8da2bb" size="sm">
                     scrollOffset=true
                   </Text>
-                  <ScrollArea height={220} mt="sm" scrollOffset scrollbarSize={14}>
+                  <ScrollArea
+                    height={220}
+                    mt="sm"
+                    scrollOffset
+                    scrollbarSize={14}
+                  >
                     <Stack gap="sm">
                       {activityFeed.map((entry) => (
-                        <Paper key={`feed-offset-${entry}`} p="sm" radius="md" shadow="xs">
+                        <Paper
+                          key={`feed-offset-${entry}`}
+                          p="sm"
+                          radius="md"
+                          shadow="xs"
+                        >
                           <Text size="sm">{entry}</Text>
                         </Paper>
                       ))}
@@ -694,7 +862,7 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="TextInput pokazuje wszystkie field variants, rozmiary oraz radius."
+              description="TextInput shows all field variants, sizes, and radius values."
               title="TextInput"
             >
               <Stack gap="md">
@@ -735,7 +903,7 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="NumberInput pokazuje warianty, skale, radius i opcjonalne controls."
+              description="NumberInput demonstrates variants, scales, radius values, and optional controls."
               title="NumberInput"
             >
               <Stack gap="md">
@@ -777,7 +945,7 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="TextArea pokazuje warianty i wielolinijkowe pole bez osobnej sekcji size."
+              description="TextArea demonstrates variants and multiline input without a separate size section."
               title="TextArea"
             >
               <Stack gap="md">
@@ -796,7 +964,7 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="Select pokazuje warianty, size, radius i tryb searchable."
+              description="Select demonstrates variants, sizes, radius values, and searchable mode."
               title="Select"
             >
               <Stack gap="md">
@@ -840,7 +1008,7 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="MultiSelect prezentuje skale, warianty, radius i aktywne pillsy."
+              description="MultiSelect presents scales, variants, radius values, and active pills."
               title="MultiSelect"
             >
               <Stack gap="md">
@@ -884,7 +1052,7 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="Checkbox wspiera warianty, skale i layout z opisem oraz hintem."
+              description="Checkbox supports variants, scales, and layouts with descriptions and hints."
               title="Checkbox"
             >
               <Stack gap="md">
@@ -915,7 +1083,7 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="Switch pokazuje field variants, sizes i zrodla label/hint."
+              description="Switch demonstrates field variants, sizes, and label or hint combinations."
               title="Switch"
             >
               <Stack gap="md">
@@ -933,7 +1101,9 @@ const App = () => {
                 <Grid gap="sm" minChildWidth={180}>
                   {fieldSizes.map((size) => (
                     <Switch
-                      defaultChecked={size === "md" || size === "lg" || size === "xl"}
+                      defaultChecked={
+                        size === "md" || size === "lg" || size === "xl"
+                      }
                       hint="ui"
                       key={size}
                       label={`size ${size}`}
@@ -946,7 +1116,7 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="Slider ma te same warianty i size co pola formularza."
+              description="Slider uses the same variants and sizes as the form fields."
               title="Slider"
             >
               <Stack gap="md">
@@ -988,7 +1158,12 @@ const App = () => {
             color="#eff6ff"
             p="sm"
             radius="xl"
-            style={{ position: "fixed", right: "1rem", top: "1rem", zIndex: 1500 }}
+            style={{
+              position: "fixed",
+              right: "1rem",
+              top: "1rem",
+              zIndex: 1500,
+            }}
           >
             <Group gap="sm">
               <IconCheck size={16} stroke={2} />
@@ -1001,7 +1176,7 @@ const App = () => {
       )}
 
       <Modal
-        description="Ten modal sluzy jako sekcja demonstracyjna dla size, scrolla i dowolnej zawartosci."
+        description="This modal serves as a demo section for sizes, scrolling, and arbitrary content."
         onChange={(opened) => {
           if (!opened) {
             setModalSize(null);
@@ -1019,8 +1194,8 @@ const App = () => {
           </Flex>
 
           <Text color="#b8c5d6">
-            W srodku zostawilem ScrollArea, zeby od razu bylo widac, jak komponenty
-            zachowuja sie po zagniezdzeniu w overlayu.
+            A ScrollArea is included inside so you can immediately see how the
+            components behave when nested inside an overlay.
           </Text>
 
           <ScrollArea height="16rem" scrollOffset>
@@ -1043,7 +1218,7 @@ const App = () => {
       </Modal>
 
       <Modal
-        description="Ten modal jest zamontowany lokalnie przez target=#modal-target."
+        description="This modal is mounted locally through target=#modal-target."
         lockScroll={false}
         onChange={setTargetedModalOpen}
         opened={targetedModalOpen}
@@ -1053,7 +1228,8 @@ const App = () => {
       >
         <Stack gap="md">
           <Text color="#b8c5d6" size="sm">
-            To jest przyklad renderowania modala wewnatrz wskazanego kontenera.
+            This is an example of rendering a modal inside a specific
+            container.
           </Text>
           <Button onClick={() => setTargetedModalOpen(false)} variant="filled">
             Close target modal
