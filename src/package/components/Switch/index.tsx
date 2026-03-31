@@ -3,7 +3,7 @@ import styles from './index.module.css'
 import sharedStyles from '../_shared/field.module.css'
 import { className } from '../../utils'
 import type { StyleProps } from '../../utils'
-import { fieldSizeClassNames, fieldVariantClassNames, getFieldLayout, type FieldSize, type FieldVariant, type FieldWrapperProps } from '../_shared/field'
+import { fieldSizeClassNames, fieldVariantClassNames, getFieldLayout, type FieldSize, type FieldWrapperProps } from '../_shared/field'
 
 export type SwitchProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'children' | 'type' | 'size'> &
   StyleProps &
@@ -11,7 +11,6 @@ export type SwitchProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'children'
     label?: ReactNode
     size?: FieldSize
     style?: CSSProperties
-    variant?: FieldVariant
   }
 
 export const Switch = ({
@@ -24,11 +23,10 @@ export const Switch = ({
   required,
   size = 'md',
   style,
-  variant = 'default',
   withAsterisk,
   ...props
 }: SwitchProps) => {
-  const { wrapperProps, wrapperStyles } = getFieldLayout({ ...props, description, error, hint, required, size, style, variant, withAsterisk })
+  const { wrapperProps, wrapperStyles } = getFieldLayout({ ...props, description, error, hint, required, size, style, withAsterisk })
 
   return (
     <div className={styles.field} style={{ ...wrapperStyles, ...style }}>
@@ -36,7 +34,7 @@ export const Switch = ({
       <label
         className={className(
           sharedStyles[fieldSizeClassNames[size]],
-          sharedStyles[fieldVariantClassNames[variant]],
+          sharedStyles[fieldVariantClassNames.default],
           disabled && sharedStyles.choiceDisabled,
           styles.root,
           customClassName,

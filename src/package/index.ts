@@ -1,4 +1,4 @@
-import './styles.css'
+import "./styles.css";
 
-export * from './components/index'
-export * from './utils/index'
+export * from "./components/index";
+export * from "./utils/index";

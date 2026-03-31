@@ -7,6 +7,10 @@ export type SelectOption = {
   value: string
 }
 
+type FilterSelectOptionsOptions = {
+  exactMatchReturnsAll?: boolean
+}
+
 export const getOptionSearchText = (option: SelectOption) => {
   if (option.search) {
     return option.search
@@ -33,10 +37,21 @@ export const findSelectOptions = (data: SelectOption[], values: string[]) => {
   return data.filter((option) => valueSet.has(option.value))
 }
 
-export const filterSelectOptions = (data: SelectOption[], query: string) => {
+export const filterSelectOptions = (
+  data: SelectOption[],
+  query: string,
+  options: FilterSelectOptionsOptions = {},
+) => {
   const normalizedQuery = query.trim().toLowerCase()
 
   if (!normalizedQuery) {
+    return data
+  }
+
+  if (
+    options.exactMatchReturnsAll &&
+    data.some((option) => getOptionSearchText(option).trim().toLowerCase() === normalizedQuery)
+  ) {
     return data
   }
 

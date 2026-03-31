@@ -8,12 +8,26 @@
   align-items: start;
 }
 
+.searchableControl {
+  cursor: text;
+}
+
+.searchableControl:focus-within {
+  outline: none;
+  border-color: var(--lw-field-border-focus);
+  box-shadow: 0 0 0 0.125rem rgba(59, 130, 246, 0.18);
+}
+
 .values {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.375rem;
   min-width: 0;
+}
+
+.valuesWithInput {
+  align-content: center;
 }
 
 .placeholder {
@@ -34,6 +48,25 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.searchInput {
+  flex: 1 0 7ch;
+  min-width: 4ch;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+}
+
+.searchInput::placeholder {
+  color: var(--lw-color-text-dimmed);
+}
+
+.searchInput:focus {
+  outline: none;
 }
 
 .chevron {

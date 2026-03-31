@@ -3,7 +3,7 @@ import styles from './index.module.css'
 import sharedStyles from '../_shared/field.module.css'
 import { className } from '../../utils'
 import type { StyleProps } from '../../utils'
-import { FieldRoot, fieldSizeClassNames, fieldVariantClassNames, getFieldLayout, type FieldSize, type FieldVariant, type FieldWrapperProps } from '../_shared/field'
+import { FieldRoot, fieldSizeClassNames, fieldVariantClassNames, getFieldLayout, type FieldSize, type FieldWrapperProps } from '../_shared/field'
 
 export type CheckboxProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'children' | 'type' | 'size'> &
   StyleProps &
@@ -11,7 +11,6 @@ export type CheckboxProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'childre
     label?: ReactNode
     size?: FieldSize
     style?: CSSProperties
-    variant?: FieldVariant
   }
 
 export const Checkbox = ({
@@ -24,11 +23,10 @@ export const Checkbox = ({
   required,
   size = 'md',
   style,
-  variant = 'default',
   withAsterisk,
   ...props
 }: CheckboxProps) => {
-  const { wrapperProps, wrapperStyles } = getFieldLayout({ ...props, description, error, hint, required, size, style, variant, withAsterisk })
+  const { wrapperProps, wrapperStyles } = getFieldLayout({ ...props, description, error, hint, required, size, style, withAsterisk })
 
   return (
     <FieldRoot description={description} error={error} hint={hint} label={undefined} required={required} style={{ ...wrapperStyles, ...style }} withAsterisk={withAsterisk}>
@@ -36,7 +34,7 @@ export const Checkbox = ({
         className={className(
           sharedStyles.choiceRoot,
           sharedStyles[fieldSizeClassNames[size]],
-          sharedStyles[fieldVariantClassNames[variant]],
+          sharedStyles[fieldVariantClassNames.default],
           disabled && sharedStyles.choiceDisabled,
           styles.root,
           customClassName,

@@ -1,10 +1,11 @@
 import { IconCheck, IconChevronDown } from '@tabler/icons-react'
-import { useDeferredValue, useEffect, useId, useRef, useState, type CSSProperties, type ReactNode } from 'react'
+import { useDeferredValue, useEffect, useId, useRef, useState, type CSSProperties, type FocusEvent, type KeyboardEvent, type ReactNode } from 'react'
 import styles from './index.module.css'
 import fieldStyles from '../_shared/field.module.css'
 import dropdownStyles from '../_shared/select.module.css'
-import { FieldRoot, fieldSizeClassNames, fieldVariantClassNames, getFieldLayout, type FieldSize, type FieldVariant, type FieldWrapperProps } from '../_shared/field'
-import { filterSelectOptions, findSelectOption, type SelectOption, useDismissableLayer } from '../_shared/select'
+import { FieldRoot, fieldSizeClassNames, fieldVariantClassNames, getFieldLayout, type FieldSize, type FieldWrapperProps } from '../_shared/field'
+import { ScrollArea } from '../ScrollArea'
+import { filterSelectOptions, findSelectOption, getOptionSearchText, type SelectOption, useDismissableLayer } from '../_shared/select'
 import { className } from '../../utils'
 import type { StyleProps } from '../../utils'
 
@@ -24,7 +25,6 @@ export type SelectProps = StyleProps &
     size?: FieldSize
     style?: CSSProperties
     value?: string | null
-    variant?: FieldVariant
   }
 
 export const Select = ({
@@ -47,21 +47,20 @@ export const Select = ({
   size = 'md',
   style,
   value,
-  variant = 'default',
   withAsterisk,
   ...props
 }: SelectProps) => {
   const [open, setOpen] = useState(false)
-  const [search, setSearch] = useState('')
   const [uncontrolledValue, setUncontrolledValue] = useState<string | null>(defaultValue)
-  const deferredSearch = useDeferredValue(search)
   const currentValue = value === undefined ? uncontrolledValue : value
   const selectedOption = findSelectOption(data, currentValue)
-  const filteredData = filterSelectOptions(data, deferredSearch)
+  const [search, setSearch] = useState(() => (selectedOption ? getOptionSearchText(selectedOption) : ''))
+  const deferredSearch = useDeferredValue(search)
+  const filteredData = searchable ? filterSelectOptions(data, deferredSearch, { exactMatchReturnsAll: true }) : data
   const dropdownId = useId()
   const searchInputRef = useRef<HTMLInputElement>(null)
   const rootRef = useRef<HTMLDivElement>(null)
-  const { controlStyles, wrapperStyles } = getFieldLayout({ ...props, description, error, hint, label, required, size, style, variant, withAsterisk })
+  const { controlStyles, wrapperStyles } = getFieldLayout({ ...props, description, error, hint, label, required, size, style, withAsterisk })
 
   useDismissableLayer(rootRef, () => setOpen(false), open)
 
@@ -72,15 +71,10 @@ export const Select = ({
   }, [disabled, open])
 
   useEffect(() => {
-    if (!open) {
-      setSearch('')
-      return
+    if (!open || !searchable) {
+      setSearch(selectedOption ? getOptionSearchText(selectedOption) : '')
     }
-
-    if (searchable) {
-      searchInputRef.current?.focus()
-    }
-  }, [open, searchable])
+  }, [open, searchable, selectedOption])
 
   const handleSelect = (option: SelectOption) => {
     if (option.disabled) {
@@ -92,71 +86,127 @@ export const Select = ({
     }
 
     onChange?.(option.value, option)
+    setSearch(getOptionSearchText(option))
     setOpen(false)
+  }
+
+  const handleSearchChange = (nextSearch: string) => {
+    setSearch(nextSearch)
+    setOpen(true)
+  }
+
+  const handleSearchBlur = (event: FocusEvent<HTMLInputElement>) => {
+    const nextFocused = event.relatedTarget
+
+    if (nextFocused instanceof Node && rootRef.current?.contains(nextFocused)) {
+      return
+    }
+
+    setOpen(false)
+    setSearch(selectedOption ? getOptionSearchText(selectedOption) : '')
+  }
+
+  const handleSearchKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'ArrowDown' || event.key === 'Enter') {
+      setOpen(true)
+    }
+
+    if (event.key === 'Escape') {
+      setOpen(false)
+      setSearch(selectedOption ? getOptionSearchText(selectedOption) : '')
+      searchInputRef.current?.blur()
+    }
   }
 
   return (
     <FieldRoot description={description} error={error} hint={hint} label={label} required={required} style={{ ...wrapperStyles, ...style }} withAsterisk={withAsterisk}>
       <div className={dropdownStyles.root} ref={rootRef}>
         {name && currentValue != null && <input name={name} type="hidden" value={currentValue} />}
-        <button
-          aria-controls={dropdownId}
-          aria-expanded={open}
-          className={className(
-            fieldStyles.control,
-            fieldStyles[fieldSizeClassNames[size]],
-            fieldStyles[fieldVariantClassNames[variant]],
-            dropdownStyles.trigger,
-            styles.root,
-            customClassName,
-          )}
-          disabled={disabled}
-          id={id}
-          onClick={() => setOpen((currentOpen) => !currentOpen)}
-          style={controlStyles}
-          type="button"
-        >
-          <span className={className(dropdownStyles.triggerLabel, styles.value, !selectedOption && styles.placeholder)}>
-            {selectedOption?.label ?? placeholder}
-          </span>
-          <IconChevronDown className={className(dropdownStyles.chevron, open && dropdownStyles.chevronOpen)} size={18} stroke={1.8} />
-        </button>
+        {searchable ? (
+          <div className={styles.searchableRoot}>
+            <input
+              aria-autocomplete="list"
+              aria-controls={dropdownId}
+              aria-expanded={open}
+              aria-haspopup="listbox"
+              className={className(
+                fieldStyles.control,
+                fieldStyles[fieldSizeClassNames[size]],
+                fieldStyles[fieldVariantClassNames.default],
+                styles.searchInput,
+                customClassName,
+              )}
+              disabled={disabled}
+              id={id}
+              onBlur={handleSearchBlur}
+              onChange={(event) => handleSearchChange(event.target.value)}
+              onClick={() => setOpen(true)}
+              onFocus={() => setOpen(true)}
+              onKeyDown={handleSearchKeyDown}
+              placeholder={search.length === 0 ? (typeof placeholder === 'string' ? placeholder : searchPlaceholder) : undefined}
+              ref={searchInputRef}
+              role="combobox"
+              style={controlStyles}
+              value={search}
+            />
+            <IconChevronDown className={className(styles.searchChevron, open && dropdownStyles.chevronOpen)} size={18} stroke={1.8} />
+          </div>
+        ) : (
+          <button
+            aria-controls={dropdownId}
+            aria-expanded={open}
+            className={className(
+              fieldStyles.control,
+              fieldStyles[fieldSizeClassNames[size]],
+              fieldStyles[fieldVariantClassNames.default],
+              dropdownStyles.trigger,
+              styles.root,
+              customClassName,
+            )}
+            disabled={disabled}
+            id={id}
+            onClick={() => setOpen((currentOpen) => !currentOpen)}
+            style={controlStyles}
+            type="button"
+          >
+            <span className={className(dropdownStyles.triggerLabel, styles.value, !selectedOption && styles.placeholder)}>
+              {selectedOption?.label ?? placeholder}
+            </span>
+            <IconChevronDown className={className(dropdownStyles.chevron, open && dropdownStyles.chevronOpen)} size={18} stroke={1.8} />
+          </button>
+        )}
 
         {open && (
           <div aria-orientation="vertical" className={dropdownStyles.dropdown} id={dropdownId} role="listbox">
-            {searchable && (
-              <input
-                className={dropdownStyles.search}
-                onChange={(event) => setSearch(event.target.value)}
-                placeholder={searchPlaceholder}
-                ref={searchInputRef}
-                value={search}
-              />
-            )}
-            {filteredData.length === 0 && <div className={dropdownStyles.empty}>{nothingFound}</div>}
+            <ScrollArea mah="16rem" scrollOffset scrollbarSize={10} viewportClassName={dropdownStyles.optionsViewport}>
+              <div className={dropdownStyles.options}>
+                {filteredData.length === 0 && <div className={dropdownStyles.empty}>{nothingFound}</div>}
 
-            {filteredData.map((option) => {
-              const isSelected = option.value === selectedOption?.value
+                {filteredData.map((option) => {
+                  const isSelected = option.value === selectedOption?.value
 
-              return (
-                <button
-                  aria-selected={isSelected}
-                  className={className(
-                    dropdownStyles.option,
-                    isSelected && dropdownStyles.optionSelected,
-                    option.disabled && dropdownStyles.optionDisabled,
-                  )}
-                  disabled={option.disabled}
-                  key={option.value}
-                  onClick={() => handleSelect(option)}
-                  role="option"
-                  type="button"
-                >
-                  <span>{option.label}</span>
-                  <IconCheck className={className(dropdownStyles.check, isSelected && dropdownStyles.checkVisible)} size={16} stroke={2} />
-                </button>
-              )
-            })}
+                  return (
+                    <button
+                      aria-selected={isSelected}
+                      className={className(
+                        dropdownStyles.option,
+                        isSelected && dropdownStyles.optionSelected,
+                        option.disabled && dropdownStyles.optionDisabled,
+                      )}
+                      disabled={option.disabled}
+                      key={option.value}
+                      onMouseDown={(event) => event.preventDefault()}
+                      onClick={() => handleSelect(option)}
+                      role="option"
+                      type="button"
+                    >
+                      <span>{option.label}</span>
+                      <IconCheck className={className(dropdownStyles.check, isSelected && dropdownStyles.checkVisible)} size={16} stroke={2} />
+                    </button>
+                  )
+                })}
+              </div>
+            </ScrollArea>
           </div>
         )}
       </div>

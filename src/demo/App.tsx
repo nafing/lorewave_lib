@@ -58,14 +58,6 @@ const badgeVariants = [
   "transparent",
 ] as const;
 const badgeSizes = ["xs", "sm", "md", "lg", "xl"] as const;
-const fieldVariants = [
-  "default",
-  "filled",
-  "light",
-  "outline",
-  "subtle",
-  "transparent",
-] as const;
 const fieldSizes = ["xs", "sm", "md", "lg", "xl"] as const;
 const paperShadows = ["xs", "sm", "md", "lg"] as const;
 const titleOrders = [1, 2, 3, 4, 5, 6] as const;
@@ -865,21 +857,10 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="TextInput shows all field variants, sizes, and radius values."
+              description="TextInput shows the shared field sizing and radius controls without field variants."
               title="TextInput"
             >
               <Stack gap="md">
-                <Grid gap="sm" minChildWidth={220}>
-                  {fieldVariants.map((variant) => (
-                    <TextInput
-                      defaultValue={variant}
-                      key={variant}
-                      label={`variant ${variant}`}
-                      placeholder="Enter value"
-                      variant={variant}
-                    />
-                  ))}
-                </Grid>
                 <Grid gap="sm" minChildWidth={180}>
                   {fieldSizes.map((size) => (
                     <TextInput
@@ -887,7 +868,6 @@ const App = () => {
                       label={`size ${size}`}
                       placeholder="Scale"
                       size={size}
-                      variant="filled"
                     />
                   ))}
                 </Grid>
@@ -898,7 +878,6 @@ const App = () => {
                       label={`radius ${String(radius)}`}
                       placeholder="Rounded field"
                       radius={radius}
-                      variant="outline"
                     />
                   ))}
                 </Grid>
@@ -906,22 +885,10 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="NumberInput demonstrates variants, scales, radius values, and optional controls."
+              description="NumberInput demonstrates sizes, radius values, and optional controls with a single field style."
               title="NumberInput"
             >
               <Stack gap="md">
-                <Grid gap="sm" minChildWidth={220}>
-                  {fieldVariants.map((variant) => (
-                    <NumberInput
-                      defaultValue={42}
-                      key={variant}
-                      label={`variant ${variant}`}
-                      step={1}
-                      variant={variant}
-                      withControls={variant !== "transparent"}
-                    />
-                  ))}
-                </Grid>
                 <Grid gap="sm" minChildWidth={180}>
                   {fieldSizes.map((size) => (
                     <NumberInput
@@ -929,7 +896,6 @@ const App = () => {
                       key={size}
                       label={`size ${size}`}
                       size={size}
-                      variant="filled"
                     />
                   ))}
                 </Grid>
@@ -940,7 +906,6 @@ const App = () => {
                       key={String(radius)}
                       label={`radius ${String(radius)}`}
                       radius={radius}
-                      variant="outline"
                     />
                   ))}
                 </Grid>
@@ -948,18 +913,18 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="TextArea demonstrates variants and multiline input without a separate size section."
+              description="TextArea demonstrates multiline input with shared field styling and radius control."
               title="TextArea"
             >
               <Stack gap="md">
-                <Grid gap="sm" minChildWidth={240}>
-                  {fieldVariants.map((variant) => (
+                <Grid gap="sm" minChildWidth={180}>
+                  {radiusValues.map((radius) => (
                     <TextArea
                       defaultValue="Longer multiline sample"
-                      key={variant}
-                      label={`variant ${variant}`}
+                      key={String(radius)}
+                      label={`radius ${String(radius)}`}
+                      radius={radius}
                       rows={3}
-                      variant={variant}
                     />
                   ))}
                 </Grid>
@@ -967,22 +932,10 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="Select demonstrates variants, sizes, radius values, and searchable mode."
+              description="Select demonstrates sizes, radius values, searchable mode, and ScrollArea-backed dropdown lists."
               title="Select"
             >
               <Stack gap="md">
-                <Grid gap="sm" minChildWidth={220}>
-                  {fieldVariants.map((variant) => (
-                    <Select
-                      data={selectData}
-                      defaultValue="alpha"
-                      key={variant}
-                      label={`variant ${variant}`}
-                      searchable
-                      variant={variant}
-                    />
-                  ))}
-                </Grid>
                 <Grid gap="sm" minChildWidth={180}>
                   {fieldSizes.map((size) => (
                     <Select
@@ -991,7 +944,6 @@ const App = () => {
                       key={size}
                       label={`size ${size}`}
                       size={size}
-                      variant="filled"
                     />
                   ))}
                 </Grid>
@@ -1003,7 +955,6 @@ const App = () => {
                       key={String(radius)}
                       label={`radius ${String(radius)}`}
                       radius={radius}
-                      variant="outline"
                     />
                   ))}
                 </Grid>
@@ -1011,22 +962,10 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="MultiSelect presents scales, variants, radius values, and active pills."
+              description="MultiSelect presents scales, radius values, active pills, and ScrollArea-backed dropdown lists."
               title="MultiSelect"
             >
               <Stack gap="md">
-                <Grid gap="sm" minChildWidth={220}>
-                  {fieldVariants.map((variant) => (
-                    <MultiSelect
-                      data={multiSelectData}
-                      defaultValue={["map", "alerts"]}
-                      key={variant}
-                      label={`variant ${variant}`}
-                      searchable
-                      variant={variant}
-                    />
-                  ))}
-                </Grid>
                 <Grid gap="sm" minChildWidth={180}>
                   {fieldSizes.map((size) => (
                     <MultiSelect
@@ -1035,7 +974,6 @@ const App = () => {
                       key={size}
                       label={`size ${size}`}
                       size={size}
-                      variant="light"
                     />
                   ))}
                 </Grid>
@@ -1047,7 +985,6 @@ const App = () => {
                       key={String(radius)}
                       label={`radius ${String(radius)}`}
                       radius={radius}
-                      variant="outline"
                     />
                   ))}
                 </Grid>
@@ -1055,21 +992,10 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="Checkbox supports variants, scales, and layouts with descriptions and hints."
+              description="Checkbox supports scales and layouts with descriptions and hints."
               title="Checkbox"
             >
               <Stack gap="md">
-                <Grid gap="sm" minChildWidth={220}>
-                  {fieldVariants.map((variant) => (
-                    <Checkbox
-                      defaultChecked
-                      description="Checkbox description"
-                      key={variant}
-                      label={`variant ${variant}`}
-                      variant={variant}
-                    />
-                  ))}
-                </Grid>
                 <Grid gap="sm" minChildWidth={180}>
                   {fieldSizes.map((size) => (
                     <Checkbox
@@ -1078,7 +1004,6 @@ const App = () => {
                       key={size}
                       label={`size ${size}`}
                       size={size}
-                      variant="outline"
                     />
                   ))}
                 </Grid>
@@ -1086,21 +1011,10 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="Switch demonstrates field variants, sizes, and label or hint combinations."
+              description="Switch demonstrates sizes and label or hint combinations without variant switches."
               title="Switch"
             >
               <Stack gap="md">
-                <Grid gap="sm" minChildWidth={220}>
-                  {fieldVariants.map((variant) => (
-                    <Switch
-                      defaultChecked={variant !== "transparent"}
-                      description="Switch description"
-                      key={variant}
-                      label={`variant ${variant}`}
-                      variant={variant}
-                    />
-                  ))}
-                </Grid>
                 <Grid gap="sm" minChildWidth={180}>
                   {fieldSizes.map((size) => (
                     <Switch
@@ -1111,7 +1025,6 @@ const App = () => {
                       key={size}
                       label={`size ${size}`}
                       size={size}
-                      variant="filled"
                     />
                   ))}
                 </Grid>
@@ -1119,22 +1032,10 @@ const App = () => {
             </ShowcaseSection>
 
             <ShowcaseSection
-              description="Slider uses the same variants and sizes as the form fields."
+              description="Slider uses the same sizing scale as the form fields, without variant permutations."
               title="Slider"
             >
               <Stack gap="md">
-                <Grid gap="sm" minChildWidth={220}>
-                  {fieldVariants.map((variant, index) => (
-                    <Slider
-                      defaultValue={20 + index * 12}
-                      key={variant}
-                      label={`variant ${variant}`}
-                      max={100}
-                      min={0}
-                      variant={variant}
-                    />
-                  ))}
-                </Grid>
                 <Grid gap="sm" minChildWidth={180}>
                   {fieldSizes.map((size, index) => (
                     <Slider
@@ -1144,7 +1045,6 @@ const App = () => {
                       max={100}
                       min={0}
                       size={size}
-                      variant="light"
                     />
                   ))}
                 </Grid>

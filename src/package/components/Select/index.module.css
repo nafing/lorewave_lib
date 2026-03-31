@@ -2,6 +2,28 @@
   display: block;
 }
 
+.searchableRoot {
+  position: relative;
+}
+
+.searchInput {
+  padding-right: 2.75rem;
+}
+
+.searchInput::-ms-clear {
+  display: none;
+}
+
+.searchChevron {
+  position: absolute;
+  top: 50%;
+  right: 0.875rem;
+  transform: translateY(-50%);
+  color: var(--lw-color-text-dimmed);
+  pointer-events: none;
+  transition: transform 140ms ease;
+}
+
 .value {
   min-width: 0;
   overflow: hidden;

@@ -4,14 +4,13 @@ import styles from './index.module.css'
 import sharedStyles from '../_shared/field.module.css'
 import { className } from '../../utils'
 import type { StyleProps } from '../../utils'
-import { FieldRoot, fieldSizeClassNames, fieldVariantClassNames, getFieldLayout, type FieldSize, type FieldVariant, type FieldWrapperProps } from '../_shared/field'
+import { FieldRoot, fieldSizeClassNames, fieldVariantClassNames, getFieldLayout, type FieldSize, type FieldWrapperProps } from '../_shared/field'
 
 export type NumberInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> &
   StyleProps &
   FieldWrapperProps & {
     size?: FieldSize
     style?: CSSProperties
-    variant?: FieldVariant
     withControls?: boolean
   }
 
@@ -24,12 +23,11 @@ export const NumberInput = ({
   required,
   size = 'md',
   style,
-  variant = 'default',
   withControls = true,
   withAsterisk,
   ...props
 }: NumberInputProps) => {
-  const { controlStyles, wrapperProps, wrapperStyles } = getFieldLayout({ ...props, description, error, hint, label, required, size, style, variant, withAsterisk })
+  const { controlStyles, wrapperProps, wrapperStyles } = getFieldLayout({ ...props, description, error, hint, label, required, size, style, withAsterisk })
   const inputRef = useRef<HTMLInputElement>(null)
 
   const stepValue = (direction: 'up' | 'down') => {
@@ -56,7 +54,7 @@ export const NumberInput = ({
         className={className(
           sharedStyles.control,
           sharedStyles[fieldSizeClassNames[size]],
-          sharedStyles[fieldVariantClassNames[variant]],
+          sharedStyles[fieldVariantClassNames.default],
           styles.shell,
           styles.root,
           customClassName,
