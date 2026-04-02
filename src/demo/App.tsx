@@ -178,9 +178,9 @@ const App = () => {
                   ease of use.
                 </Title>
                 <Text color="muted" fw={500} size="sm">
-                  Explore all components, variants, and sizes in one place,
-                  with examples and descriptions. This demo showcase is the
-                  ideal place to get familiar with the library and see how each
+                  Explore all components, variants, and sizes in one place, with
+                  examples and descriptions. This demo showcase is the ideal
+                  place to get familiar with the library and see how each
                   component can be used to build advanced user interfaces in
                   FiveM.
                 </Text>
@@ -395,7 +395,8 @@ const App = () => {
                   </Text>
                 ))}
                 <Text color="muted">
-                  Muted text uses the global semantic palette for secondary copy.
+                  Muted text uses the global semantic palette for secondary
+                  copy.
                 </Text>
                 <Text
                   color="dimmed"
@@ -406,7 +407,11 @@ const App = () => {
                   then cut after the second line to show the multiline
                   truncation behavior.
                 </Text>
-                <Text color="primary-text" style={{ maxWidth: "12rem" }} truncate>
+                <Text
+                  color="primary-text"
+                  style={{ maxWidth: "12rem" }}
+                  truncate
+                >
                   Truncate sample with a very long dispatch event name that
                   should cut.
                 </Text>
@@ -933,7 +938,7 @@ const App = () => {
 
             <ShowcaseSection
               description="Select demonstrates sizes, radius values, searchable mode, and ScrollArea-backed dropdown lists."
-              title="Select"
+              title="Select Test"
             >
               <Stack gap="md">
                 <Grid gap="sm" minChildWidth={180}>
@@ -1131,8 +1136,7 @@ const App = () => {
       >
         <Stack gap="md">
           <Text color="muted" size="sm">
-            This is an example of rendering a modal inside a specific
-            container.
+            This is an example of rendering a modal inside a specific container.
           </Text>
           <Button onClick={() => setTargetedModalOpen(false)} variant="filled">
             Close target modal
