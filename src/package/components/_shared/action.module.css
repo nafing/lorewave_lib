@@ -6,19 +6,23 @@
   --lw-action-icon-size: 1.125rem;
   --lw-action-loader-size: 0.875rem;
   --lw-action-bg: var(--lw-color-surface-alt);
-  --lw-action-bg-hover: rgba(15, 23, 42, 0.82);
+  --lw-action-bg-hover: rgba(15, 23, 42, 0.92);
   --lw-action-border: var(--lw-color-border);
   --lw-action-border-hover: var(--lw-color-border-strong);
   --lw-action-color: var(--lw-color-text);
+  --lw-action-color-hover: var(--lw-action-color);
+  --lw-action-shadow: none;
+  --lw-action-shadow-hover: var(--lw-action-shadow);
   position: relative;
   border: 1px solid var(--lw-action-border);
   border-radius: var(--lw-action-radius);
   color: var(--lw-action-color);
   background: var(--lw-action-bg);
+  box-shadow: var(--lw-action-shadow);
   font: inherit;
   line-height: 1;
   cursor: pointer;
-  transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease, opacity 140ms ease;
+  transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease, box-shadow 140ms ease, opacity 140ms ease;
   appearance: none;
   box-sizing: border-box;
 }
@@ -31,13 +35,18 @@
 .base:not(:disabled):hover {
   background: var(--lw-action-bg-hover);
   border-color: var(--lw-action-border-hover);
+  color: var(--lw-action-color-hover);
+  box-shadow: var(--lw-action-shadow-hover);
 }
 
 .variantDefault {
   --lw-action-bg: var(--lw-color-surface-alt);
-  --lw-action-bg-hover: rgba(15, 23, 42, 0.82);
+  --lw-action-bg-hover: rgba(15, 23, 42, 0.96);
   --lw-action-border: var(--lw-color-border);
+  --lw-action-border-hover: rgba(125, 211, 252, 0.32);
   --lw-action-color: var(--lw-color-text);
+  --lw-action-shadow: inset 0 1px 0 rgba(248, 250, 252, 0.04);
+  --lw-action-shadow-hover: 0 0.5rem 1.25rem rgba(2, 6, 23, 0.18);
 }
 
 .variantFilled {
@@ -56,29 +65,37 @@
 
 .variantOutline {
   --lw-action-bg: transparent;
-  --lw-action-bg-hover: rgba(15, 23, 42, 0.82);
-  --lw-action-border: var(--lw-color-border);
-  --lw-action-color: var(--lw-color-text);
+  --lw-action-bg-hover: rgba(59, 130, 246, 0.12);
+  --lw-action-border: rgba(125, 211, 252, 0.34);
+  --lw-action-border-hover: rgba(125, 211, 252, 0.58);
+  --lw-action-color: var(--lw-color-text-muted);
+  --lw-action-color-hover: var(--lw-color-text);
+  --lw-action-shadow-hover: inset 0 0 0 1px rgba(125, 211, 252, 0.16);
 }
 
 .variantSubtle {
-  --lw-action-bg: transparent;
-  --lw-action-bg-hover: transparent;
-  --lw-action-border: transparent;
+  --lw-action-bg: rgba(148, 163, 184, 0.08);
+  --lw-action-bg-hover: rgba(148, 163, 184, 0.14);
+  --lw-action-border: rgba(148, 163, 184, 0.1);
+  --lw-action-border-hover: rgba(148, 163, 184, 0.18);
   --lw-action-color: var(--lw-color-text-muted);
 }
 
-.variantSubtle:not(:disabled):hover,
-.variantTransparent:not(:disabled):hover {
+.variantSubtle:not(:disabled):hover {
   color: var(--lw-color-text);
-  border-color: transparent;
 }
 
 .variantTransparent {
   --lw-action-bg: transparent;
-  --lw-action-bg-hover: transparent;
+  --lw-action-bg-hover: rgba(248, 250, 252, 0.04);
   --lw-action-border: transparent;
+  --lw-action-border-hover: transparent;
   --lw-action-color: var(--lw-color-text);
+}
+
+.variantTransparent:not(:disabled):hover {
+  color: var(--lw-color-text);
+  border-color: transparent;
 }
 
 .sizeXs {

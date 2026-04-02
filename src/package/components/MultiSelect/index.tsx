@@ -3,7 +3,7 @@ import { useDeferredValue, useEffect, useId, useRef, useState, type CSSPropertie
 import styles from './index.module.css'
 import fieldStyles from '../_shared/field.module.css'
 import dropdownStyles from '../_shared/select.module.css'
-import { FieldRoot, fieldSizeClassNames, fieldVariantClassNames, getFieldLayout, type FieldSize, type FieldWrapperProps } from '../_shared/field'
+import { FieldRoot, fieldSizeClassNames, fieldVariantClassNames, getFieldLayout, useFieldControlId, type FieldSize, type FieldWrapperProps } from '../_shared/field'
 import { ScrollArea } from '../ScrollArea'
 import { filterSelectOptions, findSelectOptions, type SelectOption, useDismissableLayer } from '../_shared/select'
 import { className } from '../../utils'
@@ -50,6 +50,7 @@ export const MultiSelect = ({
   withAsterisk,
   ...props
 }: MultiSelectProps) => {
+  const controlId = useFieldControlId(id)
   const [open, setOpen] = useState(false)
   const [search, setSearch] = useState('')
   const [uncontrolledValue, setUncontrolledValue] = useState<string[]>(defaultValue)
@@ -154,7 +155,6 @@ export const MultiSelect = ({
               styles.root,
               customClassName,
             )}
-            id={id}
             onClick={() => {
               if (disabled) {
                 return
@@ -179,6 +179,7 @@ export const MultiSelect = ({
                 aria-haspopup="listbox"
                 className={styles.searchInput}
                 disabled={disabled}
+                id={controlId}
                 onBlur={handleSearchBlur}
                 onChange={(event) => {
                   setSearch(event.target.value)

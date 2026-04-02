@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from 'react'
+import { useId, type CSSProperties, type ReactNode } from 'react'
 import styles from './field.module.css'
 import { className, extractColorStyles, extractRadiusStyles, extractSpacingStyles, omitStyleProps } from '../../utils'
 import type { StyleProps } from '../../utils'
@@ -37,6 +37,14 @@ export const fieldSizeClassNames: Record<FieldSize, string> = {
   md: 'sizeMd',
   lg: 'sizeLg',
   xl: 'sizeXl',
+}
+
+const fieldControlIdPrefix = 'lw-field'
+
+export const useFieldControlId = (id?: string) => {
+  const generatedId = useId()
+
+  return id ?? `${fieldControlIdPrefix}-${generatedId.replace(/:/g, '')}`
 }
 
 export const getFieldLayout = <T extends FieldStyleProps>(props: T) => {

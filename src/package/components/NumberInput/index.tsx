@@ -4,7 +4,7 @@ import styles from './index.module.css'
 import sharedStyles from '../_shared/field.module.css'
 import { className } from '../../utils'
 import type { StyleProps } from '../../utils'
-import { FieldRoot, fieldSizeClassNames, fieldVariantClassNames, getFieldLayout, type FieldSize, type FieldWrapperProps } from '../_shared/field'
+import { FieldRoot, fieldSizeClassNames, fieldVariantClassNames, getFieldLayout, useFieldControlId, type FieldSize, type FieldWrapperProps } from '../_shared/field'
 
 export type NumberInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> &
   StyleProps &
@@ -27,6 +27,7 @@ export const NumberInput = ({
   withAsterisk,
   ...props
 }: NumberInputProps) => {
+  const controlId = useFieldControlId(props.id)
   const { controlStyles, wrapperProps, wrapperStyles } = getFieldLayout({ ...props, description, error, hint, label, required, size, style, withAsterisk })
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -75,6 +76,7 @@ export const NumberInput = ({
         <input
           {...wrapperProps}
           className={styles.input}
+          id={controlId}
           ref={inputRef}
           type="number"
         />

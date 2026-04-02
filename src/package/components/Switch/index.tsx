@@ -3,7 +3,7 @@ import styles from './index.module.css'
 import sharedStyles from '../_shared/field.module.css'
 import { className } from '../../utils'
 import type { StyleProps } from '../../utils'
-import { fieldSizeClassNames, fieldVariantClassNames, getFieldLayout, type FieldSize, type FieldWrapperProps } from '../_shared/field'
+import { fieldSizeClassNames, fieldVariantClassNames, getFieldLayout, useFieldControlId, type FieldSize, type FieldWrapperProps } from '../_shared/field'
 
 export type SwitchProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'children' | 'type' | 'size'> &
   StyleProps &
@@ -26,6 +26,7 @@ export const Switch = ({
   withAsterisk,
   ...props
 }: SwitchProps) => {
+  const controlId = useFieldControlId(props.id)
   const { wrapperProps, wrapperStyles } = getFieldLayout({ ...props, description, error, hint, required, size, style, withAsterisk })
 
   return (
@@ -40,7 +41,7 @@ export const Switch = ({
           customClassName,
         )}
       >
-        <input {...wrapperProps} className={className(sharedStyles.choiceInput, styles.input)} disabled={disabled} type="checkbox" />
+        <input {...wrapperProps} className={className(sharedStyles.choiceInput, styles.input)} disabled={disabled} id={controlId} type="checkbox" />
         <span className={styles.track}>
           <span className={styles.thumb} />
         </span>

@@ -3,7 +3,7 @@ import styles from './index.module.css'
 import sharedStyles from '../_shared/field.module.css'
 import { className } from '../../utils'
 import type { StyleProps } from '../../utils'
-import { FieldRoot, fieldVariantClassNames, getFieldLayout, type FieldWrapperProps } from '../_shared/field'
+import { FieldRoot, fieldVariantClassNames, getFieldLayout, useFieldControlId, type FieldWrapperProps } from '../_shared/field'
 
 export type TextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
   StyleProps &
@@ -22,6 +22,7 @@ export const TextArea = ({
   withAsterisk,
   ...props
 }: TextAreaProps) => {
+  const controlId = useFieldControlId(props.id)
   const { controlStyles, wrapperProps, wrapperStyles } = getFieldLayout({ ...props, description, error, hint, label, required, style, withAsterisk })
 
   return (
@@ -35,6 +36,7 @@ export const TextArea = ({
           styles.root,
           customClassName,
         )}
+        id={controlId}
         style={controlStyles}
       />
     </FieldRoot>

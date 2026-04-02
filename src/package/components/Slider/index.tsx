@@ -3,7 +3,7 @@ import styles from './index.module.css'
 import sharedStyles from '../_shared/field.module.css'
 import { className } from '../../utils'
 import type { StyleProps } from '../../utils'
-import { FieldRoot, fieldSizeClassNames, fieldVariantClassNames, getFieldLayout, type FieldSize, type FieldWrapperProps } from '../_shared/field'
+import { FieldRoot, fieldSizeClassNames, fieldVariantClassNames, getFieldLayout, useFieldControlId, type FieldSize, type FieldWrapperProps } from '../_shared/field'
 
 export type SliderProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> &
   StyleProps &
@@ -24,6 +24,7 @@ export const Slider = ({
   withAsterisk,
   ...props
 }: SliderProps) => {
+  const controlId = useFieldControlId(props.id)
   const { wrapperProps, wrapperStyles } = getFieldLayout({ ...props, description, error, hint, label, required, size, style, withAsterisk })
 
   return (
@@ -37,6 +38,7 @@ export const Slider = ({
           styles.root,
           customClassName,
         )}
+        id={controlId}
         type="range"
       />
     </FieldRoot>

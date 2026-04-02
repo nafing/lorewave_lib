@@ -3,7 +3,7 @@ import { useDeferredValue, useEffect, useId, useRef, useState, type CSSPropertie
 import styles from './index.module.css'
 import fieldStyles from '../_shared/field.module.css'
 import dropdownStyles from '../_shared/select.module.css'
-import { FieldRoot, fieldSizeClassNames, fieldVariantClassNames, getFieldLayout, type FieldSize, type FieldWrapperProps } from '../_shared/field'
+import { FieldRoot, fieldSizeClassNames, fieldVariantClassNames, getFieldLayout, useFieldControlId, type FieldSize, type FieldWrapperProps } from '../_shared/field'
 import { ScrollArea } from '../ScrollArea'
 import { filterSelectOptions, findSelectOption, getOptionSearchText, type SelectOption, useDismissableLayer } from '../_shared/select'
 import { className } from '../../utils'
@@ -50,6 +50,7 @@ export const Select = ({
   withAsterisk,
   ...props
 }: SelectProps) => {
+  const controlId = useFieldControlId(id)
   const [open, setOpen] = useState(false)
   const [uncontrolledValue, setUncontrolledValue] = useState<string | null>(defaultValue)
   const currentValue = value === undefined ? uncontrolledValue : value
@@ -137,7 +138,7 @@ export const Select = ({
                 customClassName,
               )}
               disabled={disabled}
-              id={id}
+                id={controlId}
               onBlur={handleSearchBlur}
               onChange={(event) => handleSearchChange(event.target.value)}
               onClick={() => setOpen(true)}
